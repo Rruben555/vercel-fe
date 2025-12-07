@@ -68,6 +68,7 @@ function Character() {
             return (
               <div
                 key={c.char_id}
+                className="character-card"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -88,6 +89,7 @@ function Character() {
                   src={c.image}
                   alt={c.name}
                   referrerPolicy="no-referrer"
+                  className="character-image"
                   style={{
                     width: "380px",
                     borderRadius: "12px",
@@ -96,7 +98,7 @@ function Character() {
                   }}
                 />
 
-                <div style={{ color: "white", maxWidth: "600px" }}>
+                <div style={{ color: "white", maxWidth: "600px" }} className="character-info">
                   <h2 style={{ marginBottom: "0.5rem", fontSize: "1.8rem" }}>
                     {c.name}
                   </h2>
@@ -106,7 +108,7 @@ function Character() {
                     display: "flex",
                     gap: "0.75rem",
                     marginBottom: "1rem",
-                    marginLeft: "1.2rem",
+                    justifyContent: "center",
                   }}>
                     {/* Element tag */}
                     <div style={{
@@ -175,6 +177,34 @@ function Character() {
       <style>{`
         @keyframes fadeInUp {
           to { opacity: 1; transform: translateY(0); }
+        }
+
+        .character-card {
+          display: flex;
+          align-items: center;       /* 🔥 MENENGAHKAN VERTICAL */
+          justify-content: center;   /* 🔥 MENENGAHKAN HORIZONTAL */
+        }
+
+        .character-image {
+          width: 100%;
+          max-width: 260px;     /* ⬅️ BATAS MAKS BIAR GA KEGEDEAN */
+          height: auto;
+          object-fit: cover;
+          border-radius: 12px;
+          display: block;
+          margin: 0 auto;       /* ⬅️ SELALU TENGAH */
+        }
+
+
+        @media (max-width: 768px) {
+          .character-card {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .character-image {
+            max-width: 200px;   /* ⬅️ LEBIH KECIL PAS MOBILE */
+          }
         }
       `}</style>
     </main>
