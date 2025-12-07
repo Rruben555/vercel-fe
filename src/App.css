@@ -46,6 +46,15 @@
   transform: scale(1.05);
 }
 
+.burger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
 
 .login-page {
   width: 100vw;
@@ -98,7 +107,7 @@
 
 /* Tombol Sign In berada di bawah */
 .login-btn {
-  padding: 0.45rem 1.4rem;
+  padding: 0.65rem 1.8rem;
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.4);
   background: transparent;
@@ -115,6 +124,15 @@
 .login-btn:hover {
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+@media (max-width: 600px) {
+  .login-btn {
+    padding: 0.75rem 2rem;     /* tombol lebih besar */
+    font-size: 1.1rem;         /* teks lebih besar */
+    width: 120px;              /* tombol makin lebar */
+    justify-content: center;
+  }
 }
 
 .close-login {
@@ -298,26 +316,86 @@
   line-height: 1.6;
 }
 
+Desktop menu default
+.desktop-menu {
+  display: flex;
+  gap: 20px;
+}
+
+/* Mobile hidden by default */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
 
 @media (max-width: 1024px) {
   .content-box h1 { font-size: 1.75rem; }
   .content-box p, .solid-section p { font-size: 0.95rem; }
 }
 
+
+
 @media (max-width: 768px) {
+
+  /* 🔥 UPDATED — burger hanya muncul di HP */
+  .burger-btn {
+    display: block;              /* 🔥 DITAMBAHKAN */
+    position: absolute;
+    right: 20px;
+    z-index: 50;
+  }
+
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    padding: 12px 20px;
+    position: relative;
   }
 
-  .nav-left, .nav-links {
+  /* ❌ HAPUS — ada .nav-links padahal tidak ada di kode React kamu */
+  /* .nav-left, .nav-links, .nav-right {  ❌ DIHAPUS */
+
+  /* ✅ DIGANTI dengan ini */
+  .nav-right {                    /* 🔥 DIBETULKAN */
+    display: none;               /* default: disembunyikan */
     flex-direction: column;
     width: 100%;
+    text-align: left;
     gap: 0.5rem;
+    margin-top: 8px;
+  }
+
+  /* 🔥 DITAMBAHKAN — menu muncul saat burger dibuka */
+  .nav-left.show,
+  .nav-right.show {
+    display: flex;               /* 🔥 DITAMBAHKAN */
+  }
+
+  /* 🔥 UPDATED — link mobile lebih enak */
+  .nav-left a,
+  .nav-right a {                 /* 🔥 DIBETULKAN (hapus nav-links a) */
+    font-size: 0.9rem;           /* 🟧 sebelumnya 1rem */
+    padding: 0.4rem 0;           /* 🟧 sebelumnya 0.5rem 1rem */
+    width: 100%;                 /* 🔥 jadi full width */
+    display: block;
+  }
+
+  /* 🔥 DITAMBAHKAN — LOGIN juga full width di mobile */
+  .login-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 
   .content-box h1 { font-size: 1.5rem; }
-  .content-box p, .solid-section p { font-size: 0.9rem; }
+  .content-box p,
+  .solid-section p { font-size: 0.9rem; }
 }
 
 .pagination {
@@ -454,4 +532,81 @@
 
 .cancel-btn:hover {
   background: #777;
+}
+
+.character-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.character-image {
+  width: 380px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.character-info {
+  max-width: 600px;
+}
+
+
+/* ========================================================= */
+/* MOBILE MODE RESPONSIVE */
+/* ========================================================= */
+
+@media (max-width: 900px) {
+  .character-card {
+    flex-direction: column;       /* ← dari horizontal ke vertical */
+    text-align: center;
+  }
+
+  .character-image {
+    width: 95%;                   /* gambar jadi kecil */
+    max-width: 300px;             /* batas */
+  }
+
+  .character-info {
+    max-width: 90%;
+  }
+
+  .character-info h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* tag bar membungkus */
+  .character-info > div {
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  /* ukuran tag mengecil */
+  .character-info > div > div {
+    min-width: 85px !important;
+    height: 36px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* teks ukuran kecil */
+  .character-info p {
+    font-size: 0.9rem;
+  }
+
+  /* lebih rapat */
+  .character-card {
+    padding: 1rem !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .character-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .character-image {
+    max-width: 250px;
+  }
 }
