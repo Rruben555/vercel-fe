@@ -76,6 +76,7 @@ export default function PostDetail({ user }) {
         backgroundColor: "#2a2a2a",
         borderRadius: "16px",
         color: "white",
+        marginBottom: "45px",
       }}
     >
       <button
@@ -240,3 +241,4 @@ export default function PostDetail({ user }) {
     </div>
   );
 }
+
